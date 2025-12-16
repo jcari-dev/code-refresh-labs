@@ -9,6 +9,8 @@ interface Props {
   challenge: Challenge;
 }
 
+
+
 export default function ChallengeEditor({ challenge }: Props) {
   // ---- Safe languages array with fallback ----
   const languages: LanguageConfig[] = useMemo(() => {
@@ -62,6 +64,15 @@ export default function ChallengeEditor({ challenge }: Props) {
     }
   }
 
+  function handleResetCode() {
+    
+    if(!confirm("This will replace all code in the code editor, to the default provided code. Confirm??")){
+    setCode(activeLang.starterCode);
+    setOutput("Run the tests!")
+    }
+
+  }
+
   async function handleRun() {
     setIsRunning(true);
     setOutput("Running tests...");
@@ -89,6 +100,9 @@ export default function ChallengeEditor({ challenge }: Props) {
           });
         }
       }
+
+      
+
     } catch (err) {
       setOutput("Runtime error:\n" + String(err));
     } finally {
@@ -118,6 +132,14 @@ export default function ChallengeEditor({ challenge }: Props) {
               {lang.id === "python" ? "Python" : "JavaScript"}
             </button>
           ))}
+                      <button
+              key={"default-code"}
+              onClick={handleResetCode}
+              className="ml-auto px-2.5 py-1 rounded-full border bg-emerald-500 text-slate-900 border-emerald-400"
+            >
+              Reset to starter code
+              {/* {lang.id === "python" ? "Python" : "JavaScript"} */}
+            </button>
         </div>
       )}
 
