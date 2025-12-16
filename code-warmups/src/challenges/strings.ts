@@ -38,4 +38,41 @@ export const stringsChallenges: Challenge[] = [
     timeLimitSeconds: 300,
   },
   // other challenges...
+    {
+    id: "remove-all-digits",
+    title: "Remove All Digits",
+    category: "strings",
+    description: "Return the string without any digits.",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "remove_all_digits",
+        starterCode: `def remove_all_digits(s: str) -> str:
+    if not s:
+        return s
+    # TODO: implement
+    return s
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "removeAllDigits",
+        starterCode: `function removeAllDigits(s) {
+  if (!s) return s;
+  // TODO: implement
+  return s;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: ["aaaa"],       expected: "aaaa" },
+      { input: ["a1b2c3"],      expected: "abc" },
+      { input: ["a 8"],          expected: "a " },
+      { input: [""],           expected: "" },
+      { input: ["123"], expected: "" },
+    ],
+    timeLimitSeconds: 300,
+  },
+  // other challenges...
 ];
