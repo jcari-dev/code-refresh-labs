@@ -17,6 +17,7 @@ type Submission = {
   total: number | null;
   ok: boolean | null; // true if all passed, false if not, null if unknown
   output: string; // full test output (optionally capped)
+  console: string; // captured print()/console.log() (optionally capped)
   code: string; // code used at submission time (optionally capped)
 };
 
@@ -90,6 +91,7 @@ export default function ChallengeEditor({ challenge }: Props) {
 
   const [code, setCode] = useState(activeLang.starterCode);
   const [output, setOutput] = useState("Run the tests!");
+  const [consoleOut, setConsoleOut] = useState(""); // NEW
   const [isRunning, setIsRunning] = useState(false);
 
   // Submissions for this challenge
@@ -102,9 +104,7 @@ export default function ChallengeEditor({ challenge }: Props) {
   }, [challenge.id]);
 
   useEffect(() => {
-    const lingeringCode = localStorage.getItem(
-      challenge.id + ":" + activeLangId
-    );
+    const lingeringCode = localStorage.getItem(challenge.id + ":" + activeLangId);
     if (lingeringCode) setCode(lingeringCode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -121,6 +121,7 @@ export default function ChallengeEditor({ challenge }: Props) {
       const lingeringCode = localStorage.getItem(challenge.id + ":" + id);
       setCode(lingeringCode ? lingeringCode : lang.starterCode);
       setOutput("Run the tests!");
+      setConsoleOut("");
     }
   }
 
@@ -133,25 +134,26 @@ export default function ChallengeEditor({ challenge }: Props) {
       localStorage.removeItem(challenge.id + ":" + activeLangId);
       setCode(activeLang.starterCode);
       setOutput("Run the tests!");
+      setConsoleOut("");
     }
   }
 
   async function handleRun() {
     setIsRunning(true);
     setOutput("Running tests...");
+    setConsoleOut("");
 
     try {
-      let result: string;
+      // runners now return { result, console }
+      const run =
+        activeLang.id === "python"
+          ? await runPythonChallenge(challenge, activeLang, code)
+          : await runJsChallenge(challenge, activeLang, code);
 
-      if (activeLang.id === "python") {
-        result = await runPythonChallenge(challenge, activeLang, code);
-      } else {
-        result = await runJsChallenge(challenge, activeLang, code);
-      }
+      setOutput(run.result);
+      setConsoleOut(run.console || "");
 
-      setOutput(result);
-
-      const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(result);
+      const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(run.result);
       const passed = match ? Number(match[1]) : null;
       const total = match ? Number(match[2]) : null;
       const ok = match ? passed === total && total > 0 : null;
@@ -170,7 +172,8 @@ export default function ChallengeEditor({ challenge }: Props) {
         passed,
         total,
         ok,
-        output: result.slice(0, 8000),
+        output: run.result.slice(0, 8000),
+        console: (run.console || "").slice(0, 8000),
         code: code.slice(0, 8000),
       };
 
@@ -179,6 +182,7 @@ export default function ChallengeEditor({ challenge }: Props) {
     } catch (err) {
       const msg = "Runtime error:\n" + String(err);
       setOutput(msg);
+      setConsoleOut("");
 
       const entry: Submission = {
         ts: Date.now(),
@@ -187,11 +191,12 @@ export default function ChallengeEditor({ challenge }: Props) {
         total: null,
         ok: false,
         output: msg.slice(0, 8000),
+        console: "",
         code: code.slice(0, 8000),
       };
 
       setSubmissions(appendSubmission(challenge.id, entry));
-      setExpandedIdx(0); // expand newest
+      setExpandedIdx(0);
     } finally {
       setIsRunning(false);
     }
@@ -256,14 +261,20 @@ export default function ChallengeEditor({ challenge }: Props) {
 
         <div className="text-[11px] text-slate-400">
           Runtime:{" "}
-          {activeLang.id === "python"
-            ? "Pyodide (Python 3.11.3)"
-            : "Browser JS"}
+          {activeLang.id === "python" ? "Pyodide (Python 3.11.3)" : "Browser JS"}
         </div>
       </div>
 
+      {/* Tests output */}
+      <div className="text-[11px] text-slate-400">Output</div>
       <pre className="bg-slate-900 border border-slate-700 text-slate-200 p-3 rounded min-h-[120px] whitespace-pre-wrap text-sm overflow-auto">
         {output}
+      </pre>
+
+      {/* Console output */}
+      <div className="text-[11px] text-slate-400">Console</div>
+      <pre className="bg-slate-950/50 border border-slate-800 text-slate-200 p-3 rounded min-h-[80px] whitespace-pre-wrap text-sm overflow-auto">
+        {consoleOut ? consoleOut : "Console output will show here."}
       </pre>
 
       {/* Submissions (expandable) */}
@@ -285,7 +296,7 @@ export default function ChallengeEditor({ challenge }: Props) {
             </button>
           </div>
 
-          <div className="max-h-[260px] overflow-auto divide-y divide-slate-800">
+          <div className="max-h-[320px] overflow-auto divide-y divide-slate-800">
             {submissions.map((s, i) => {
               const isOpen = expandedIdx === i;
               const score =
@@ -319,9 +330,7 @@ export default function ChallengeEditor({ challenge }: Props) {
 
                       <div className="flex items-center gap-3">
                         <span
-                          className={
-                            s.ok ? "text-emerald-400" : "text-slate-500"
-                          }
+                          className={s.ok ? "text-emerald-400" : "text-slate-500"}
                         >
                           {s.ok ? "PASS" : "—"}
                         </span>
@@ -335,6 +344,7 @@ export default function ChallengeEditor({ challenge }: Props) {
                   {isOpen && (
                     <div className="px-3 pb-3">
                       <div className="grid grid-cols-1 gap-2">
+                        {/* Output */}
                         <div className="flex items-center justify-between">
                           <div className="text-[11px] text-slate-500">
                             Output
@@ -348,24 +358,39 @@ export default function ChallengeEditor({ challenge }: Props) {
                             Copy output
                           </button>
                         </div>
-
                         <pre className="bg-slate-950/50 border border-slate-800 rounded p-2 max-h-[140px] overflow-auto whitespace-pre-wrap text-slate-200">
                           {s.output}
                         </pre>
 
+                        {/* Console */}
+                        <div className="flex items-center justify-between">
+                          <div className="text-[11px] text-slate-500">
+                            Console
+                          </div>
+                          <button
+                            className="text-[11px] text-slate-400 hover:text-slate-200"
+                            onClick={() =>
+                              navigator.clipboard.writeText(s.console || "")
+                            }
+                          >
+                            Copy console
+                          </button>
+                        </div>
+                        <pre className="bg-slate-950/50 border border-slate-800 rounded p-2 max-h-[140px] overflow-auto whitespace-pre-wrap text-slate-200">
+                          {s.console ? s.console : "(no console output)"}
+                        </pre>
+
+                        {/* Code */}
                         <div className="flex items-center justify-between">
                           <div className="text-[11px] text-slate-500">Code</div>
                           <button
                             className="text-[11px] text-slate-400 hover:text-slate-200"
-                            onClick={() =>
-                              navigator.clipboard.writeText(s.code)
-                            }
+                            onClick={() => navigator.clipboard.writeText(s.code)}
                           >
                             Copy code
                           </button>
                         </div>
-
-                        <pre className="bg-slate-950/50 border border-slate-800 rounded p-2 max-h-[180px] overflow-auto whitespace-pre text-slate-200">
+                        <pre className="bg-slate-950/50 border border-slate-800 rounded p-2 max-h-[220px] overflow-auto whitespace-pre text-slate-200">
                           {s.code}
                         </pre>
                       </div>

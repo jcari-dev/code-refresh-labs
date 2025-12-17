@@ -1,39 +1,39 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { challenges } from "../challenges";
 
 const labelMap: Record<string, string> = {
-  "strings": "Strings",
-  "lists": "Lists",
-  "math": "Math",
+  strings: "Strings",
+  lists: "Lists",
+  math: "Math",
   "code-reading": "Code Reading",
 };
 
 export default function Sidebar() {
-  const categories = [...new Set(challenges.map(c => c.category))];
+  const categories = [...new Set(challenges.map((c) => c.category))];
 
   const counts = categories.reduce<Record<string, number>>((acc, cat) => {
-    acc[cat as string] = challenges.filter(c => c.category === cat).length;
+    acc[cat as string] = challenges.filter((c) => c.category === cat).length;
     return acc;
   }, {});
 
   return (
     <aside className="w-64 bg-slate-950 border-r border-slate-800 flex flex-col px-4 py-5">
-      {/* App identity */}
-      <div className="mb-6">
+      {/* App identity (clickable -> homepage) */}
+      <Link to="/" className="mb-6 block group">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300 text-sm font-bold">
-            CW
+          <div className="h-8 w-8 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300 text-sm font-bold group-hover:border-emerald-400/60 transition">
+            CR
           </div>
           <div>
-            <div className="text-sm font-semibold tracking-tight">
-              CodeWarmups
+            <div className="text-sm font-semibold tracking-tight group-hover:text-slate-100 transition">
+              Code Refresh
             </div>
             <div className="text-[11px] text-slate-400">
-              Tiny coding reps
+              Short problems. Sharp skills.
             </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Navigation */}
       <div className="text-[11px] font-semibold text-slate-400 uppercase mb-2">
@@ -41,7 +41,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="space-y-1 flex-1">
-        {categories.map(cat => (
+        {categories.map((cat) => (
           <NavLink
             key={cat as string}
             to={`/category/${cat}`}
@@ -62,16 +62,22 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* Tiny stats footer */}
-      <div className="mt-4 rounded-md border border-slate-800 bg-slate-900/60 p-3 text-[11px] text-slate-300">
-        <div className="font-semibold mb-1">Today</div>
-        <div className="flex justify-between">
-          <span>Warmups</span>
-          <span className="text-emerald-300 font-semibold">0 / 3</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Streak</span>
-          <span>0 days</span>
+      {/* Footer (text-only, quiet) */}
+      <div className="mt-6 text-center text-[11px] text-slate-500">
+        <div className="mb-1">Built for light, focused coding.</div>
+        <div className="space-x-2">
+          <NavLink to="/why" className="hover:text-slate-300 transition">
+            Why this exists
+          </NavLink>
+          <span>·</span>
+          <a
+            href="https://github.com/yourrepo"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-slate-300 transition"
+          >
+            GitHub
+          </a>
         </div>
       </div>
     </aside>
