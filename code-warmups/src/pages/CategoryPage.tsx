@@ -40,8 +40,6 @@ export default function CategoryPage() {
           <thead className="bg-slate-900/80 text-slate-300 text-xs uppercase">
             <tr>
               <th className="px-4 py-2 text-left font-medium">Challenge</th>
-              {/* <th className="px-4 py-2 text-left font-medium">Est. time</th>
-              <th className="px-4 py-2 text-left font-medium">Type</th> */}
               <th className="px-4 py-2 text-left font-medium">Completed</th>
             </tr>
           </thead>
@@ -58,14 +56,6 @@ export default function CategoryPage() {
                     {ch.description}
                   </div>
                 </td>
-                {/* <td className="px-4 py-3 text-slate-200">
-                  {Math.round(ch.timeLimitSeconds / 60)} min
-                </td>
-                <td className="px-4 py-3">
-                  <span className="inline-flex items-center rounded-full bg-slate-800 px-2 py-0.5 text-[10px] uppercase tracking-wide text-slate-300">
-                    warmup
-                  </span>
-                </td> */}
                 <td className="px-4 py-3 text-xs font-medium tracking-wide">
                   <span
                     className={

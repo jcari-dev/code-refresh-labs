@@ -3,7 +3,7 @@ import type { Challenge } from "../types";
 export const codeReadingChallenges: Challenge[] = [
   {
     id: "cr-list-mutation",
-    title: "What Does This Code Do?",
+    title: "Code Reading Warmup: 1",
     category: "code-reading",
     description: "What is the final value of `items`?",
     paramNames: [""],
