@@ -35,7 +35,7 @@ export default function ChallengePage() {
 
   useEffect(() => {
     if (challenge) {
-      document.title = `${challenge.title} - Code Refresh`;
+      document.title = `${challenge.title} - Code Refresh Labs`;
     }
   }, [challenge]);
 

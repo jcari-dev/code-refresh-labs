@@ -17,7 +17,7 @@ export default function Home() {
   });
 
   useEffect(() => {
-    document.title = "Code Refresh - Home";
+    document.title = "Code Refresh Labs - Home";
   }, []);
 
   const stats = useMemo(() => {

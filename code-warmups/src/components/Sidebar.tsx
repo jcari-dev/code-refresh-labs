@@ -26,7 +26,7 @@ export default function Sidebar() {
           </div>
           <div>
             <div className="text-sm font-semibold tracking-tight group-hover:text-slate-100 transition">
-              Code Refresh
+              Code Refresh Labs
             </div>
             <div className="text-[11px] text-slate-400">
               Short problems. Sharp skills.

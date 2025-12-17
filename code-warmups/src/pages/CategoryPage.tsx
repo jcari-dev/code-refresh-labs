@@ -16,7 +16,7 @@ export default function CategoryPage() {
   const list = challenges.filter((c) => c.category === categoryId);
   
   useEffect(() => {
-    document.title = `${labelMap[categoryId as string] ?? categoryId} - Code Refresh`;
+    document.title = `${labelMap[categoryId as string] ?? categoryId} - Code Refresh Labs`;
   }, [categoryId]);
 
 

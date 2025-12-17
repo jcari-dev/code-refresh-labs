@@ -6,7 +6,7 @@ export default function Why() {
 
 
   useEffect(() => {
-    document.title = "Why this exists - Code Refresh";
+    document.title = "Why this exists - Code Refresh Labs";
   }, []);
 
   return (

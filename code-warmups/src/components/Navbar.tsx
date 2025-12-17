@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <nav className="h-12 flex items-center justify-between bg-slate-900 border-b border-slate-800 px-6">
-      <div className="text-sm font-semibold tracking-tight">Code Refresh</div>
+      <div className="text-sm font-semibold tracking-tight">Code Refresh Labs</div>
 
       <div className="flex items-center gap-3">
         {/* Quote */}

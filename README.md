@@ -1,8 +1,8 @@
-# Code Refresh
+# Code Refresh Labs
 
 Lightweight coding warm-ups for days when you want to write code without the grind.
 
-Code Refresh is a small practice site focused on short, focused problems you can solve quickly to stay sharp, rebuild momentum, or warm up before deeper work.
+Code Refresh Labs is a small practice site focused on short, focused problems you can solve quickly to stay sharp, rebuild momentum, or warm up before deeper work.
 
 ## What this is
 - Bite-sized coding challenges
