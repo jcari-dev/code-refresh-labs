@@ -1,5 +1,6 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { challenges } from "../challenges";
+import { useEffect } from "react";
 
 const labelMap: Record<string, string> = {
   strings: "Strings",
@@ -13,6 +14,11 @@ export default function CategoryPage() {
   const navigate = useNavigate();
 
   const list = challenges.filter((c) => c.category === categoryId);
+  
+  useEffect(() => {
+    document.title = `${labelMap[categoryId as string] ?? categoryId} - Code Refresh`;
+  }, [categoryId]);
+
 
   if (!categoryId) {
     return <div>Missing category.</div>;

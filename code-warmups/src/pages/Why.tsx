@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
 
 export default function Why() {
+
+
+  useEffect(() => {
+    document.title = "Why this exists - Code Refresh";
+  }, []);
+
   return (
     <div className="mx-auto w-full max-w-3xl px-5 py-10">
       <div className="mb-6">

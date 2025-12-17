@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { challenges } from "../challenges";
 import ChallengeEditor from "../components/ChallengeEditor";
+import { useEffect } from "react";
 
 const labelMap: Record<string, string> = {
   strings: "Strings",
@@ -26,6 +27,13 @@ export default function ChallengePage() {
   const { challengeId } = useParams();
   const challenge = challenges.find((c) => c.id === challengeId);
 
+
+  useEffect(() => {
+    if (challenge) {
+      document.title = `${challenge.title} - Code Refresh`;
+    } }, [challenge]);  
+
+    
   if (!challenge) return <div>Challenge not found.</div>;
 
   const categoryLabel = labelMap[challenge.category] ?? challenge.category;
