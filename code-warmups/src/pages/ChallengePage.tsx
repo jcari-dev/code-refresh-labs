@@ -28,9 +28,8 @@ export default function ChallengePage() {
   const base = import.meta.env.BASE_URL;
 
   function hardGo(toId: string) {
-    // change search param so the browser does a full document navigation
-    // TODO this needs to be changed later to work with non-hash routing.
-    window.location.href = `${base}?t=${Date.now()}#/challenge/${toId}`;
+    window.location.hash = `#/challenge/${toId}`;
+    window.location.reload(); // WE DON'T LIKE THIS, BUT IT WORKS. #TODO: FIX LATER.
   }
 
   if (!challenge) return <div>Challenge not found.</div>;
