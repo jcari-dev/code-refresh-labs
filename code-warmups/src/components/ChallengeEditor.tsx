@@ -290,6 +290,7 @@ async function handleRun() {
 
       <div className="border border-slate-800 rounded-lg overflow-hidden">
         <MonacoEditor
+        
           height="280px"
           language={monacoLanguage}
           theme="vs-dark"

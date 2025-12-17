@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { challenges } from "../challenges";
 import ChallengeEditor from "../components/ChallengeEditor";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 const labelMap: Record<string, string> = {
   strings: "Strings",
@@ -22,19 +22,28 @@ function formatInput(input: any, paramNames: string[]) {
     .join(", ");
 }
 
-
 export default function ChallengePage() {
   const { challengeId } = useParams();
   const challenge = challenges.find((c) => c.id === challengeId);
 
+  if (!challenge) return <div>Challenge not found.</div>;
 
   useEffect(() => {
     if (challenge) {
       document.title = `${challenge.title} - Code Refresh`;
-    } }, [challenge]);  
+    }
+  }, [challenge]);
 
-    
-  if (!challenge) return <div>Challenge not found.</div>;
+  const nav = useMemo(() => {
+    const sameCategory = challenges.filter(
+      (c) => c.category === challenge.category
+    );
+    const index = sameCategory.findIndex((c) => c.id === challenge.id);
+    return {
+      prev: sameCategory[index - 1],
+      next: sameCategory[index + 1],
+    };
+  }, [challenge.id, challenge.category]);
 
   const categoryLabel = labelMap[challenge.category] ?? challenge.category;
   const isCodeReading = challenge.category === "code-reading";
@@ -55,6 +64,28 @@ export default function ChallengePage() {
         </Link>
         <span>/</span>
         <span className="text-slate-200">{challenge.title}</span>
+      </div>
+
+      <div className="flex items-center mb-2 text-xs">
+        {nav.prev && (
+          <a
+            href={`/challenge/${nav.prev.id}`}
+            className="rounded px-2 py-1 border border-slate-700 hover:border-emerald-400"
+          >
+            ← Prev
+          </a>
+        )}
+
+        <div className="flex-1" />
+
+        {nav.next && (
+          <a
+            href={`/challenge/${nav.next.id}`}
+            className="rounded px-2 py-1 border border-slate-700 hover:border-emerald-400"
+          >
+            Next →
+          </a>
+        )}
       </div>
 
       {/* Two-column layout */}
@@ -98,34 +129,27 @@ export default function ChallengePage() {
               </h2>
               <ul className="space-y-1 text-sm text-slate-200">
                 {challenge.tests.slice(0, 5).map((t, i) => (
-                  // <li
-                  //   key={i}
-                  //   className="font-mono text-xs bg-slate-900/80 border border-slate-800 rounded px-2 py-1"
-                  // >
-                  //   {challenge.requiredFunction}
-                  //   (
-                  //   {formatArgsWithNames(t.input, (challenge as any).paramNames)}
-                  //   ) =&gt; {JSON.stringify(t.expected)}
-
-                  // </li>
-                  <li key={i} className="font-mono text-xs bg-slate-900/80 border border-slate-800 rounded px-2 py-1">
+                  <li
+                    key={i}
+                    className="font-mono text-xs bg-slate-900/80 border border-slate-800 rounded px-2 py-1"
+                  >
                     <span className="text-slate-400">input:</span>{" "}
                     {formatInput(t.input, challenge.paramNames)}{" "}
                     <span className="text-slate-400">→</span>{" "}
                     {JSON.stringify(t.expected)}
                   </li>
-
-
                 ))}
               </ul>
             </div>
           )}
-
         </section>
 
         {/* Editor panel */}
         <section className="rounded-2xl bg-slate-900 border border-slate-800 p-3">
-          <ChallengeEditor challenge={challenge} isCodeReading={isCodeReading} />
+          <ChallengeEditor
+            challenge={challenge}
+            isCodeReading={isCodeReading}
+          />
         </section>
       </div>
     </div>
