@@ -17,7 +17,12 @@ export interface Challenge {
   title: string;
   category: CategoryId;
   description: string;
+  paramNames: string[];
   languages: LanguageConfig[]; // NEW: per-language configs
   tests: TestCase[];
+  codeSnippet?: {
+    python: string;
+    javascript: string;
+  };
   timeLimitSeconds: number;
 }

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { challenges } from "../challenges";
 import { useMemo, useState } from "react";
+import MicroTipCard from "../components/MicroTipCard";
+import HowThisWorksCard from "../components/HowThisWorksCard";
 
 function getCompletion(chId: string) {
   const python = localStorage.getItem(`${chId}:python:completed`) === "true";
@@ -42,11 +44,12 @@ export default function Home() {
     };
   }, []);
 
-  return (
+return (
+  <div className="grid gap-6">
+    {/* Top row */}
     <div className="grid gap-6 lg:grid-cols-[1.1fr_minmax(0,0.9fr)]">
       {/* Quick start */}
       <section className="rounded-2xl bg-slate-900 border border-slate-700 p-6 shadow-lg">
-
         <h2 className="text-2xl font-bold mb-2">Ready to warm up?</h2>
 
         <Link
@@ -59,14 +62,18 @@ export default function Home() {
         {/* Progress snapshot */}
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           <div className="rounded-xl border border-slate-700 bg-slate-900/40 p-3">
-            <div className="text-xs text-slate-400">Completed (any language)</div>
+            <div className="text-xs text-slate-400">
+              Completed (any language)
+            </div>
             <div className="mt-1 text-lg font-semibold text-slate-100">
               {stats.any} / {stats.total}
             </div>
           </div>
 
           <div className="rounded-xl border border-slate-700 bg-slate-900/40 p-3">
-            <div className="text-xs text-slate-400">Completed (both languages)</div>
+            <div className="text-xs text-slate-400">
+              Completed (both languages)
+            </div>
             <div className="mt-1 text-lg font-semibold text-slate-100">
               {stats.both} / {stats.total}
             </div>
@@ -78,7 +85,8 @@ export default function Home() {
             Python: <span className="text-slate-200">{stats.python}</span>
           </div>
           <div>
-            JavaScript: <span className="text-slate-200">{stats.javascript}</span>
+            JavaScript:{" "}
+            <span className="text-slate-200">{stats.javascript}</span>
           </div>
           {stats.lastSolved && (
             <div>
@@ -127,5 +135,13 @@ export default function Home() {
         </div>
       </section>
     </div>
-  );
+
+    {/* Bottom row */}
+    <div className="grid gap-6 lg:grid-cols-2">
+      <MicroTipCard />
+      <HowThisWorksCard />
+    </div>
+  </div>
+);
+
 }

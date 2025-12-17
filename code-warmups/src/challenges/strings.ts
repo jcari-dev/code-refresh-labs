@@ -1,4 +1,4 @@
-import { Challenge } from "../types";
+import type { Challenge } from "../types";
 
 export const stringsChallenges: Challenge[] = [
   {
@@ -6,6 +6,7 @@ export const stringsChallenges: Challenge[] = [
     title: "Capitalize String",
     category: "strings",
     description: "Return the string with only the first character capitalized.",
+    paramNames: ["string"],
     languages: [
       {
         id: "python",
@@ -43,6 +44,7 @@ export const stringsChallenges: Challenge[] = [
     title: "Remove All Digits",
     category: "strings",
     description: "Return the string without any digits.",
+    paramNames: ["string"],
     languages: [
       {
         id: "python",

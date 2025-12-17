@@ -1,12 +1,13 @@
 import MonacoEditor from "@monaco-editor/react";
 import confetti from "canvas-confetti";
-import { Challenge, LanguageConfig, LanguageId } from "../types";
+import type { Challenge, LanguageConfig, LanguageId } from "../types";
 import { runPythonChallenge } from "../pyRunner";
 import { runJsChallenge } from "../jsRunner";
 import { useState, useMemo, useEffect } from "react";
 
 interface Props {
   challenge: Challenge;
+  isCodeReading?: boolean;
 }
 
 /** ---------- Submissions storage helpers ---------- */
@@ -20,6 +21,42 @@ type Submission = {
   console: string; // captured print()/console.log() (optionally capped)
   code: string; // code used at submission time (optionally capped)
 };
+
+function summarizeOnly(raw: string) {
+  const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(raw);
+  const passed = match ? Number(match[1]) : null;
+  const total = match ? Number(match[2]) : null;
+  const ok = match ? passed === total && total > 0 : null;
+
+  const safe =
+    passed == null || total == null
+      ? "Ran tests.\n"
+      : ok
+        ? `Passed ${passed}/${total} tests\n`
+        : `Passed ${passed}/${total} tests\n\nNot quite — try again.\n`;
+
+  return { safe, passed, total, ok };
+}
+
+// Defensive: if any spoiler-style lines appear, drop them
+function stripSpoilerLines(text: string) {
+  return text
+    .split("\n")
+    .filter((line) => {
+      const l = line.toLowerCase();
+      return !(
+        l.includes("expected:") ||
+        l.includes("expected ") ||
+        l.includes(" got:") ||
+        l.includes(" got ") ||
+        l.includes("args:")
+      );
+    })
+    .join("\n")
+    .trim();
+}
+
+
 
 function submissionsKey(challengeId: string) {
   return `${challengeId}:submissions`;
@@ -47,7 +84,7 @@ function appendSubmission(challengeId: string, entry: Submission, cap = 20) {
 }
 /** ----------------------------------------------- */
 
-export default function ChallengeEditor({ challenge }: Props) {
+export default function ChallengeEditor({ challenge, isCodeReading = false }: Props) {
   // ---- Safe languages array with fallback ----
   const languages: LanguageConfig[] = useMemo(() => {
     if (
@@ -138,69 +175,85 @@ export default function ChallengeEditor({ challenge }: Props) {
     }
   }
 
-  async function handleRun() {
-    setIsRunning(true);
-    setOutput("Running tests...");
+async function handleRun() {
+  setIsRunning(true);
+  setOutput("Running tests...");
+  setConsoleOut("");
+
+  try {
+    const run =
+      activeLang.id === "python"
+        ? await runPythonChallenge(challenge, activeLang, code)
+        : await runJsChallenge(challenge, activeLang, code);
+
+    // default values
+    let shownOutput = run.result;
+    let shownConsole = run.console || "";
+
+    let passed: number | null = null;
+    let total: number | null = null;
+    let ok: boolean | null = null;
+
+    if (isCodeReading) {
+      // Only show summary to avoid spoilers (expected/got)
+      const s = summarizeOnly(run.result);
+      shownOutput = s.safe;
+      passed = s.passed;
+      total = s.total;
+      ok = s.ok;
+
+      // Defensive: if anything spoiler-ish leaks into console, remove it
+      shownConsole = stripSpoilerLines(shownConsole);
+    } else {
+      const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(run.result);
+      passed = match ? Number(match[1]) : null;
+      total = match ? Number(match[2]) : null;
+      ok = match ? passed === total && total > 0 : null;
+    }
+
+    setOutput(shownOutput);
+    setConsoleOut(shownConsole);
+
+    if (ok) {
+      confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+      localStorage.setItem(challenge.id + ":" + activeLangId + ":completed", "true");
+    }
+
+    const entry: Submission = {
+      ts: Date.now(),
+      lang: activeLangId,
+      passed,
+      total,
+      ok,
+      output: shownOutput.slice(0, 8000),
+      console: shownConsole.slice(0, 8000),
+      code: code.slice(0, 8000),
+    };
+
+    setSubmissions(appendSubmission(challenge.id, entry));
+    setExpandedIdx(0);
+  } catch (err) {
+    const msg = "Runtime error:\n" + String(err);
+    setOutput(msg);
     setConsoleOut("");
 
-    try {
-      // runners now return { result, console }
-      const run =
-        activeLang.id === "python"
-          ? await runPythonChallenge(challenge, activeLang, code)
-          : await runJsChallenge(challenge, activeLang, code);
+    const entry: Submission = {
+      ts: Date.now(),
+      lang: activeLangId,
+      passed: null,
+      total: null,
+      ok: false,
+      output: msg.slice(0, 8000),
+      console: "",
+      code: code.slice(0, 8000),
+    };
 
-      setOutput(run.result);
-      setConsoleOut(run.console || "");
-
-      const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(run.result);
-      const passed = match ? Number(match[1]) : null;
-      const total = match ? Number(match[2]) : null;
-      const ok = match ? passed === total && total > 0 : null;
-
-      if (ok) {
-        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        localStorage.setItem(
-          challenge.id + ":" + activeLangId + ":completed",
-          "true"
-        );
-      }
-
-      const entry: Submission = {
-        ts: Date.now(),
-        lang: activeLangId,
-        passed,
-        total,
-        ok,
-        output: run.result.slice(0, 8000),
-        console: (run.console || "").slice(0, 8000),
-        code: code.slice(0, 8000),
-      };
-
-      setSubmissions(appendSubmission(challenge.id, entry));
-      setExpandedIdx(0); // expand newest
-    } catch (err) {
-      const msg = "Runtime error:\n" + String(err);
-      setOutput(msg);
-      setConsoleOut("");
-
-      const entry: Submission = {
-        ts: Date.now(),
-        lang: activeLangId,
-        passed: null,
-        total: null,
-        ok: false,
-        output: msg.slice(0, 8000),
-        console: "",
-        code: code.slice(0, 8000),
-      };
-
-      setSubmissions(appendSubmission(challenge.id, entry));
-      setExpandedIdx(0);
-    } finally {
-      setIsRunning(false);
-    }
+    setSubmissions(appendSubmission(challenge.id, entry));
+    setExpandedIdx(0);
+  } finally {
+    setIsRunning(false);
   }
+}
 
   const monacoLanguage =
     activeLang.id === "javascript" ? "javascript" : "python";
