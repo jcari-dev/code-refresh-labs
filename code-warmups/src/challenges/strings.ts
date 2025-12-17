@@ -297,8 +297,7 @@ export const stringsChallenges: Challenge[] = [
     id: "find-occurrences-of-x",
     title: "Find Occurrences of X",
     category: "strings",
-    description:
-      "Return the number of occurrences of x in the string.",
+    description: "Return the number of occurrences of x in the string.",
     paramNames: ["string", "x"],
     languages: [
       {
@@ -325,6 +324,40 @@ export const stringsChallenges: Challenge[] = [
       { input: ["901 \n82u738 d912n", " "], expected: 2 },
       { input: ["!!!@#", "!"], expected: 3 },
       { input: ["", "a"], expected: 0 },
+    ],
+  },
+  {
+    id: "sort-characters-by-their-ascii-values",
+    title: "Sort Characters by Their ASCII Values",
+    category: "strings",
+    description:
+      "Sort the characters in the string by their ASCII values in ascending order and return the resulting string.",
+    paramNames: ["string"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "sort_characters_by_their_ascii_values",
+        starterCode: `def sort_characters_by_their_ascii_values(s: str) -> str:
+    # TODO: sort characters by ASCII values
+    return ""
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "sortCharactersByTheirAsciiValues",
+        starterCode: `function sortCharactersByTheirAsciiValues(s) {
+  // TODO: sort characters by ASCII values
+  return "";
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [""], expected: "" }, // empty string
+      { input: ["c b a"], expected: "  abc" }, // two spaces before letters
+      { input: ["aaAa"], expected: "Aaaa" }, // uppercase before lowercase
+      { input: ["a1!z"], expected: "!1az" }, // punctuation < digits < letters
+      { input: [" \n"], expected: "\n " }, // newline (10) before space (32)
     ],
   },
 ];
