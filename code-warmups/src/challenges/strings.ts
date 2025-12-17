@@ -148,4 +148,40 @@ export const stringsChallenges: Challenge[] = [
       { input: ["12 3", "4 56"], expected: "12 34 56" },
     ],
   },
+  {
+    id: "remove-all-alphanumerics",
+    title: "Remove All Alphanumerics",
+    category: "strings",
+    description: "Return the string without any letters or numbers.",
+    paramNames: ["string"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "remove_all_alphanumerics",
+        starterCode: `def remove_all_alphanumerics(s: str) -> str:
+    if not s:
+        return s
+    # TODO: implement
+    return ""
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "removeAllAlphanumerics",
+        starterCode: `function removeAllAlphanumerics(s) {
+  if (!s) return s;
+  // TODO: implement
+  return "";
+}
+`,
+      },
+    ],
+    tests: [
+      { input: ["a-!3@"], expected: "-!@" },
+      { input: ["@'3/"], expected: "@'/" },
+      { input: ["~!@#$%^&*()-_+"], expected: "~!@#$%^&*()-_+" },
+      { input: ["Zz1"], expected: "" },
+      { input: ["!@ 3-"], expected: "!@ -" },
+    ],
+  },
 ];
