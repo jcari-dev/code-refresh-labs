@@ -25,7 +25,6 @@ function formatInput(input: any, paramNames: string[]) {
 export default function ChallengePage() {
   const { challengeId } = useParams();
   const challenge = challenges.find((c) => c.id === challengeId);
-  const base = import.meta.env.BASE_URL;
 
   function hardGo(toId: string) {
     window.location.hash = `#/challenge/${toId}`;
