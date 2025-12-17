@@ -37,7 +37,6 @@ export const stringsChallenges: Challenge[] = [
       { input: ["maccha latte"], expected: "Maccha Latte" },
     ],
   },
-  // other challenges...
   {
     id: "remove-all-digits",
     title: "Remove All Digits",
@@ -74,7 +73,6 @@ export const stringsChallenges: Challenge[] = [
       { input: ["123"], expected: "" },
     ],
   },
-  // other challenges...
   {
     id: "remove-all-whitespace",
     title: "Remove All Whitespace",
@@ -111,5 +109,43 @@ export const stringsChallenges: Challenge[] = [
       { input: [" 1 2 3 "], expected: "123" },
     ],
   },
-  // other challenges...
+  {
+    id: "join-two-strings",
+    title: "Join Two Strings",
+    category: "strings",
+    description: "Return the concatenation of two input strings.",
+    paramNames: ["string1", "string2"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "join_two_strings",
+        starterCode: `def join_two_strings(s1: str, s2: str) -> str:
+    if not s1:
+        return s2
+    if not s2:
+        return s1
+    # TODO: implement
+    return
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "joinTwoStrings",
+        starterCode: `function joinTwoStrings(s1, s2) {
+  if (!s1) return s2;
+  if (!s2) return s1;
+  // TODO: implement
+  return
+}
+`,
+      },
+    ],
+    tests: [
+      { input: ["aaaa", "bbbb"], expected: "aaaabbbb" },
+      { input: [" abc", "def"], expected: " abcdef" },
+      { input: ["a 8", "9"], expected: "a 89" },
+      { input: ["", "xyz"], expected: "xyz" },
+      { input: ["12 3", "4 56"], expected: "12 34 56" },
+    ],
+  },
 ];
