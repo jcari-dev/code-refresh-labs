@@ -257,7 +257,6 @@ export const stringsChallenges: Challenge[] = [
       { input: ["A\n"], expected: 75 }, // newline counts (10)
     ],
   },
-
   {
     id: "return-string-uppercase",
     title: "Return String Uppercase",
@@ -292,6 +291,40 @@ export const stringsChallenges: Challenge[] = [
       { input: ["AazZ"], expected: "AAZZ" },
       { input: ["!@#"], expected: "!@#" },
       { input: [""], expected: "" },
+    ],
+  },
+  {
+    id: "find-occurrences-of-x",
+    title: "Find Occurrences of X",
+    category: "strings",
+    description:
+      "Return the number of occurrences of x in the string.",
+    paramNames: ["string", "x"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "find_occurrences_of_x",
+        starterCode: `def find_occurrences_of_x(string: string, x: str) -> int:
+    # TODO: count occurrences of x in s
+    return 0
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "findOccurrencesOfX",
+        starterCode: `function findOccurrencesOfX(str, x) {
+  // TODO: count occurrences of x in s
+  return 0;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: ["aaa", "a"], expected: 3 },
+      { input: ["1111111", "banana"], expected: 0 },
+      { input: ["901 \n82u738 d912n", " "], expected: 2 },
+      { input: ["!!!@#", "!"], expected: 3 },
+      { input: ["", "a"], expected: 0 },
     ],
   },
 ];
