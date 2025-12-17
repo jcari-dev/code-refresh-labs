@@ -10,7 +10,7 @@ export const codeReadingChallenges: Challenge[] = [
 Python:
     items = [1, 2, 3]
     items.append(items.pop(0))
-    return items
+    return items a
 
 JavaScript:
     const items = [1, 2, 3];
