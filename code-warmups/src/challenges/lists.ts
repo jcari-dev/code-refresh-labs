@@ -47,9 +47,9 @@ export const listsChallenges: Challenge[] = [
       {
         id: "python",
         requiredFunction: "return_last_element",
-        starterCode: `def return_last_element(nums: list[int]) -> int | None:
+        starterCode: `def return_last_element(nums: list[int]) -> int | []:
     # TODO: implement
-    return None
+    return []
 `,
       },
       {
