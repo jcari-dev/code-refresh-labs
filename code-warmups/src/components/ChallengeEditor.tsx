@@ -26,7 +26,8 @@ function summarizeOnly(raw: string) {
   const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(raw);
   const passed = match ? Number(match[1]) : null;
   const total = match ? Number(match[2]) : null;
-  const ok = match ? passed === total && total > 0 : null;
+  const ok = match ? passed === total && (total ?? 0) > 0 : null;
+
 
   const safe =
     passed == null || total == null
@@ -208,7 +209,8 @@ async function handleRun() {
       const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(run.result);
       passed = match ? Number(match[1]) : null;
       total = match ? Number(match[2]) : null;
-      ok = match ? passed === total && total > 0 : null;
+      ok = match ? passed === total && (total ?? 0) > 0 : null;
+
     }
 
     setOutput(shownOutput);

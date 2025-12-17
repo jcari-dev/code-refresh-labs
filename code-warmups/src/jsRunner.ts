@@ -1,5 +1,6 @@
 // jsRunner.ts
-import { Challenge, LanguageConfig } from "./types";
+import type { Challenge, LanguageConfig } from "./types";
+
 
 /**
  * Runs JS warmups and returns:

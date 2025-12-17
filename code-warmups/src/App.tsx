@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
@@ -10,7 +10,7 @@ import Why from "./pages/Why";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="min-h-screen bg-slate-950 text-slate-50">
         <div className="flex h-screen">
           {/* Left app rail */}
@@ -34,6 +34,6 @@ export default function App() {
         </div>
       </div>
       
-    </BrowserRouter>
+    </HashRouter>
   );
 }
