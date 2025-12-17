@@ -110,7 +110,7 @@ export const mathChallenges: Challenge[] = [
     id: "return-list-of-divisors",
     title: "Return List of Divisors",
     category: "math",
-    description: "Return a list of all divisors of n (excluding n itself).",
+    description: "Return a list of all divisors of n (excluding n itself) and in ascending order (small to large).",
     paramNames: ["n"],
     languages: [
       {
