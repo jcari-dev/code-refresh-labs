@@ -71,7 +71,7 @@ export default function Sidebar() {
           </NavLink>
           <span>·</span>
           <a
-            href="https://github.com/yourrepo"
+            href="https://github.com/jcari-dev"
             target="_blank"
             rel="noreferrer"
             className="hover:text-slate-300 transition"

@@ -2,9 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
+
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
 import ChallengePage from "./pages/ChallengePage";
+import Why from "./pages/Why";
 
 export default function App() {
   return (
@@ -24,6 +26,7 @@ export default function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/category/:categoryId" element={<CategoryPage />} />
                   <Route path="/challenge/:challengeId" element={<ChallengePage />} />
+                  <Route path="/why" element={<Why />} />
                 </Routes>
               </div>
             </main>
