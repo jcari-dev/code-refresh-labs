@@ -105,6 +105,38 @@ export const mathChallenges: Challenge[] = [
       { input: [[0, 0, 0]], expected: 0 },
       { input: [[7]], expected: 7 },
     ],
-  }
-
+  },
+  {
+    id: "return-list-of-divisors",
+    title: "Return List of Divisors",
+    category: "math",
+    description: "Return a list of all divisors of n (excluding n itself).",
+    paramNames: ["n"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "return_list_of_divisors",
+        starterCode: `def return_list_of_divisors(n: int) -> list[int]:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "returnListOfDivisors",
+        starterCode: `function returnListOfDivisors(n) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [1], expected: [] },
+      { input: [2], expected: [1] },
+      { input: [13], expected: [1] },
+      { input: [16], expected: [1, 2, 4, 8] },
+      { input: [28], expected: [1, 2, 4, 7, 14] },
+    ],
+  },
 ];
