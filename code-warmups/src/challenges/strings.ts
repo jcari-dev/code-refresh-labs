@@ -36,7 +36,6 @@ export const stringsChallenges: Challenge[] = [
       { input: [""], expected: "" },
       { input: ["maccha latte"], expected: "Maccha Latte" },
     ],
-    timeLimitSeconds: 300,
   },
   // other challenges...
   {
@@ -74,7 +73,6 @@ export const stringsChallenges: Challenge[] = [
       { input: [""], expected: "" },
       { input: ["123"], expected: "" },
     ],
-    timeLimitSeconds: 300,
   },
   // other challenges...
   {
@@ -112,7 +110,6 @@ export const stringsChallenges: Challenge[] = [
       { input: [""], expected: "" },
       { input: [" 1 2 3 "], expected: "123" },
     ],
-    timeLimitSeconds: 300,
   },
   // other challenges...
 ];

@@ -35,6 +35,5 @@ return items;`,
       },
     ],
     tests: [{ input: [], expected: [2, 3, 1] }],
-    timeLimitSeconds: 300,
   },
 ];

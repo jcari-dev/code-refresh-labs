@@ -24,5 +24,4 @@ export interface Challenge {
     python: string;
     javascript: string;
   };
-  timeLimitSeconds: number;
 }

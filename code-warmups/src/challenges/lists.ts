@@ -69,6 +69,5 @@ export const listsChallenges: Challenge[] = [
       { input: [[1]], expected: 1 },
       { input: [[]], expected: [] },
     ],
-    timeLimitSeconds: 300,
   },
 ];

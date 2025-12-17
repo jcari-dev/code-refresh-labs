@@ -37,6 +37,5 @@ export const mathChallenges: Challenge[] = [
       { input: [15], expected: 60 }, // add 12 + 15
       { input: [0], expected: 0 },
     ],
-    timeLimitSeconds: 300,
   },
 ];
