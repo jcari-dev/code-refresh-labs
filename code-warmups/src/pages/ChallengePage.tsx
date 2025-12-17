@@ -25,6 +25,13 @@ function formatInput(input: any, paramNames: string[]) {
 export default function ChallengePage() {
   const { challengeId } = useParams();
   const challenge = challenges.find((c) => c.id === challengeId);
+  const base = import.meta.env.BASE_URL;
+
+  function hardGo(toId: string) {
+    // change search param so the browser does a full document navigation
+    // TODO this needs to be changed later to work with non-hash routing.
+    window.location.href = `${base}?t=${Date.now()}#/challenge/${toId}`;
+  }
 
   if (!challenge) return <div>Challenge not found.</div>;
 
@@ -68,23 +75,23 @@ export default function ChallengePage() {
 
       <div className="flex items-center mb-2 text-xs">
         {nav.prev && (
-          <a
-            href={`/challenge/${nav.prev.id}`}
+          <button
+            onClick={() => hardGo(nav.prev!.id)}
             className="rounded px-2 py-1 border border-slate-700 hover:border-emerald-400"
           >
             ← Prev
-          </a>
+          </button>
         )}
 
         <div className="flex-1" />
 
         {nav.next && (
-          <a
-            href={`/challenge/${nav.next.id}`}
+          <button
+            onClick={() => hardGo(nav.next!.id)}
             className="rounded px-2 py-1 border border-slate-700 hover:border-emerald-400"
           >
             Next →
-          </a>
+          </button>
         )}
       </div>
 
