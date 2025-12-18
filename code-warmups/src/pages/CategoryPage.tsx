@@ -41,7 +41,7 @@ export default function CategoryPage() {
       // completion filter
       const pyDone =
         localStorage.getItem(`${ch.id}:python:completed`) === "true";
-      const jsDone = localStorage.getItem(`${ch.id}:js:completed`) === "true";
+      const jsDone = localStorage.getItem(`${ch.id}:javascript:completed`) === "true";
 
       switch (completedFilter) {
         case "all":
@@ -137,7 +137,7 @@ export default function CategoryPage() {
                   <span className="mx-1 text-slate-600">/</span>
                   <span
                     className={
-                      localStorage.getItem(`${ch.id}:js:completed`) === "true"
+                      localStorage.getItem(`${ch.id}:javascript:completed`) === "true"
                         ? "text-emerald-400"
                         : "text-slate-500"
                     }
