@@ -128,8 +128,8 @@ export default function ChallengeEditor({
   );
 
   const [code, setCode] = useState(activeLang.starterCode);
-  const [output, setOutput] = useState("Run the tests!");
-  const [consoleOut, setConsoleOut] = useState(""); // NEW
+  const [output, setOutput] = useState("No test results yet!");
+  const [consoleOut, setConsoleOut] = useState(""); 
   const [isRunning, setIsRunning] = useState(false);
 
   // Submissions for this challenge
@@ -158,7 +158,7 @@ export default function ChallengeEditor({
     if (lang) {
       const lingeringCode = localStorage.getItem(challenge.id + ":" + id);
       setCode(lingeringCode ? lingeringCode : lang.starterCode);
-      setOutput("Run the tests!");
+      setOutput("Run the code!");
       setConsoleOut("");
     }
   }
@@ -171,7 +171,7 @@ export default function ChallengeEditor({
     ) {
       localStorage.removeItem(challenge.id + ":" + activeLangId);
       setCode(activeLang.starterCode);
-      setOutput("Run the tests!");
+      setOutput("Run the code!");
       setConsoleOut("");
     }
   }
@@ -287,7 +287,7 @@ export default function ChallengeEditor({
             onClick={handleResetCode}
             className="ml-auto px-2.5 py-1 rounded-full border bg-emerald-500 text-slate-900 border-emerald-400"
           >
-            Reset to starter code
+            Reset to Default Code
           </button>
         </div>
       )}
@@ -315,7 +315,7 @@ export default function ChallengeEditor({
           onClick={handleRun}
           disabled={isRunning}
         >
-          {isRunning ? "Running..." : "Run Tests"}
+          {isRunning ? "Running..." : "Run Code"}
         </button>
 
         <div className="text-[11px] text-slate-400">
@@ -335,7 +335,7 @@ export default function ChallengeEditor({
       {/* Console output */}
       <div className="text-[11px] text-slate-400">Console</div>
       <pre className="bg-slate-950/50 border border-slate-800 text-slate-200 p-3 rounded min-h-[80px] whitespace-pre-wrap text-sm overflow-auto">
-        {consoleOut ? consoleOut : "Console output will show here."}
+        {consoleOut ? consoleOut : "Console output will appear here."}
       </pre>
 
       {/* Submissions (expandable) */}
