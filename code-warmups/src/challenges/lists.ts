@@ -2,6 +2,40 @@ import type { Challenge } from "../types";
 
 export const listsChallenges: Challenge[] = [
   {
+    id: "sort-list-ascending",
+    title: "Sort List",
+    category: "lists",
+    paramNames: ["nums"],
+    description:
+      "Return list sorted in ascending order. If the list is empty, return an empty list.",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "sort_list_ascending",
+        starterCode: `def sort_list_ascending(nums: list[int]) -> list[int]:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "sortListAscending",
+        starterCode: `function sortListAscending(nums) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [[3, 2, 1]], expected: [1, 2, 3] },
+      { input: [[3, 2, 2]], expected: [2, 2, 3] },
+      { input: [[-1, -3, 2]], expected: [-3, -1, 2] },
+      { input: [[1, 2, 3]], expected: [1, 2, 3] },
+      { input: [[]], expected: [] },
+    ],
+  },
+  {
     id: "two-sum-indices",
     title: "Two Sum Indices",
     category: "lists",
@@ -96,8 +130,20 @@ export const listsChallenges: Challenge[] = [
       },
     ],
     tests: [
-      { input: [[2, 7, 11, 15], [1, 2, 3]], expected: [2, 7, 11, 15, 1, 2, 3] },
-      { input: [[3, 2, 4], [5, 6]], expected: [3, 2, 4, 5, 6] },
+      {
+        input: [
+          [2, 7, 11, 15],
+          [1, 2, 3],
+        ],
+        expected: [2, 7, 11, 15, 1, 2, 3],
+      },
+      {
+        input: [
+          [3, 2, 4],
+          [5, 6],
+        ],
+        expected: [3, 2, 4, 5, 6],
+      },
       { input: [[3, 0], []], expected: [3, 0] },
       { input: [[1], [2]], expected: [1, 2] },
       { input: [[], []], expected: [] },
