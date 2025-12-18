@@ -6,7 +6,7 @@ import HowThisWorksCard from "../components/HowThisWorksCard";
 
 function getCompletion(chId: string) {
   const python = localStorage.getItem(`${chId}:python:completed`) === "true";
-  const javascript = localStorage.getItem(`${chId}:js:completed`) === "true";
+  const javascript = localStorage.getItem(`${chId}:javascript:completed`) === "true";
   return { python, javascript };
 }
 
