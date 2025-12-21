@@ -1,7 +1,7 @@
 import type { Challenge } from "../types";
 
 export const listsChallenges: Challenge[] = [
-    {
+  {
     id: "return-list-reversed",
     title: "Return List Reversed",
     category: "lists",
@@ -181,6 +181,46 @@ export const listsChallenges: Challenge[] = [
       { input: [[3, 0], []], expected: [3, 0] },
       { input: [[1], [2]], expected: [1, 2] },
       { input: [[], []], expected: [] },
+    ],
+  },
+  {
+    id: "remove-index-value-from-list",
+    title: "Remove Index Value From List",
+    category: "lists",
+    paramNames: ["nums", "index"],
+    description:
+      "Return a new list with the element at the specified index removed. If index is -1 remove the last element. If index is out of bounds, return the original list. If theres no index to remove, return the original list.",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "remove_index_value_from_list",
+        starterCode: `def remove_index_value_from_list(nums: list[int], index: int) -> list[int]:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "removeIndexValueFromList",
+        starterCode: `function removeIndexValueFromList(nums, index) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      {
+        input: [[2, 7, 11, 15], [1]],
+        expected: [2, 7, 15],
+      },
+      {
+        input: [[3, 2, 4], [4]],
+        expected: [3, 2, 4],
+      },
+      { input: [[3, 0], []], expected: [3, 0] },
+      { input: [[1], [0]], expected: [] },
+      { input: [[1, 2, 3], [-1]], expected: [1, 2] },
     ],
   },
 ];
