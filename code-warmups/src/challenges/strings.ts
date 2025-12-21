@@ -360,4 +360,38 @@ export const stringsChallenges: Challenge[] = [
       { input: [" \n"], expected: "\n " }, // newline (10) before space (32)
     ],
   },
+  {
+    id: "replace-x-with-y",
+    title: "Replace X with Y",
+    category: "strings",
+    description:
+      "Replace all occurrences of character x with character y in the string and return the resulting string.",
+    paramNames: ["string", "x", "y"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "replace_x_with_y",
+        starterCode: `def replace_x_with_y(s: str, x: str, y: str) -> str:
+    # TODO: replace all occurrences of x with y
+    return ""
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "replaceXWithY",
+        starterCode: `function replaceXWithY(s, x, y) {
+  // TODO: replace all occurrences of x with y
+  return "";
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [["aaa"], ["a"], ["b"]], expected: "bbb" },
+      { input: [["c b a"], [" "], ["_"]], expected: "c_b_a" },
+      { input: [["aaAa"], ["A"], ["a"]], expected: "aaaa" },
+      { input: [["a1!z"], ["1"], [""]], expected: "a!z" },
+      { input: [[" \n"], [" "], ["\t"]], expected: "\t\n" },
+    ],
+  },
 ];
