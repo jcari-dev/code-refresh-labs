@@ -29,7 +29,7 @@ export default function Sidebar() {
               Code Refresh Labs
             </div>
             <div className="text-[11px] text-slate-400">
-              Short problems. Sharp skills.
+              Stretch your coding muscles.
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function Sidebar() {
 
       {/* Footer (text-only, quiet) */}
       <div className="mt-6 text-center text-[12px] text-slate-400">
-        <div className="mb-1">Built for light, focused coding.</div>
+        <div className="mb-1">Code a little. Feel smarter. Repeat.</div>
         <div className="space-x-2">
           <NavLink to="/why" className="hover:text-slate-300 transition">
             Why this exists
