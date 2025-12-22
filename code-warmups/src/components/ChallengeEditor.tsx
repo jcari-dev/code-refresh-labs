@@ -129,7 +129,7 @@ export default function ChallengeEditor({
 
   const [code, setCode] = useState(activeLang.starterCode);
   const [output, setOutput] = useState("No test results yet!");
-  const [consoleOut, setConsoleOut] = useState(""); 
+  const [consoleOut, setConsoleOut] = useState("");
   const [isRunning, setIsRunning] = useState(false);
 
   // Submissions for this challenge
@@ -141,39 +141,31 @@ export default function ChallengeEditor({
     setExpandedIdx(0);
   }, [challenge.id]);
 
-  useEffect(() => {
-    const key = `${challenge.id}:${activeLangId}`;
-    const lingering = localStorage.getItem(key);
-    setCode(lingering ?? activeLang.starterCode);
-  }, [challenge.id, activeLangId, activeLang.starterCode]);
+  function draftKey(challengeId: string, langId: LanguageId) {
+    return `${challengeId}:${langId}:draft`;
+  }
+
+  const key = draftKey(challenge.id, activeLangId);
 
   useEffect(() => {
-    const key = `${challenge.id}:${activeLangId}`;
-    localStorage.setItem(key, code);
-  }, [code, challenge.id, activeLangId, activeLang.starterCode]);
+    const saved = localStorage.getItem(key);
+    setCode(saved ?? activeLang.starterCode);
+  }, [key, activeLang.starterCode]);
+
 
   function handleLangChange(id: LanguageId) {
     setActiveLangId(id);
-    const lang = languages.find((l) => l.id === id);
-    if (lang) {
-      const lingeringCode = localStorage.getItem(challenge.id + ":" + id);
-      setCode(lingeringCode ? lingeringCode : lang.starterCode);
-      setOutput("Run the code!");
-      setConsoleOut("");
-    }
+    setOutput("Run the code!");
+    setConsoleOut("");
   }
 
   function handleResetCode() {
-    if (
-      confirm(
-        "This will replace all code in the code editor, to the default provided code. Are you sure?"
-      )
-    ) {
-      localStorage.removeItem(challenge.id + ":" + activeLangId);
-      setCode(activeLang.starterCode);
-      setOutput("Run the code!");
-      setConsoleOut("");
-    }
+    if (!confirm("This will replace all code... Are you sure?")) return;
+
+    localStorage.removeItem(key);
+    setCode(activeLang.starterCode);
+    setOutput("Run the code!");
+    setConsoleOut("");
   }
 
   async function handleRun() {
@@ -203,7 +195,6 @@ export default function ChallengeEditor({
         total = s.total;
         ok = s.ok;
 
-        // Defensive: if anything spoiler-ish leaks into console, remove it
         shownConsole = stripSpoilerLines(shownConsole);
       } else {
         const match = /Passed\s+(\d+)\/(\d+)\s+tests/.exec(run.result);
@@ -294,13 +285,16 @@ export default function ChallengeEditor({
 
       <div className="border border-slate-800 rounded-lg overflow-hidden">
         <MonacoEditor
-          key={`${challenge.id}-${activeLangId}`}
           path={`${challenge.id}.${activeLangId}`}
           height="280px"
           language={monacoLanguage}
           theme="vs-dark"
           value={code}
-          onChange={(v) => setCode(v ?? "")}
+          onChange={(v) => {
+            const next = v ?? "";
+            setCode(next);
+            localStorage.setItem(key, next);
+          }}
           options={{
             minimap: { enabled: false },
             fontSize: 14,
