@@ -256,19 +256,12 @@ export default function Home() {
                         to={`/challenge/${randomId}`}
                         className="inline-flex items-center rounded-lg bg-emerald-500 px-3 py-2 text-sm font-semibold text-slate-900 shadow hover:bg-emerald-400"
                       >
-                        Start your first warmup
-                      </Link>
-                      <Link
-                        to="/categories"
-                        className="inline-flex items-center rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-2 text-sm font-semibold text-slate-200 hover:border-emerald-400"
-                      >
-                        Browse categories
+                        Start Your First Warmup
                       </Link>
                     </div>
 
                     <div className="mt-3 text-xs text-slate-400">
-                      Nothing is tracked on a server. Progress is saved locally
-                      in your browser.
+                      Start anywhere. You can switch lanes anytime.
                     </div>
                   </div>
                 </div>
