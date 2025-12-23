@@ -102,4 +102,39 @@ return text;`,
     ],
     tests: [{ input: [], expected: "abc" }],
   },
+  {
+    id: "cr-regex-remove-letters",
+    title: "Code Reading Warmup: 4",
+    category: "code-reading",
+    description: "What is the final value of `text`?",
+    paramNames: [""],
+    codeSnippet: {
+      python: `text = "a1b2c3"
+text = re.sub(r"[a-zA-Z]", "", text)
+return text`,
+      javascript: `let text = "a1b2c3";
+text = text.replace(/[a-zA-Z]/g, "");
+return text;`,
+    },
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "solution",
+        starterCode: `def solution():
+    # TODO: return the final value of text
+    return None
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "solution",
+        starterCode: `function solution() {
+  // TODO: return the final value of text
+  return null;
+}
+`,
+      },
+    ],
+    tests: [{ input: [], expected: "123" }],
+  },
 ];
