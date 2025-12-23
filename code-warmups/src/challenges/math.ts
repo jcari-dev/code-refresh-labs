@@ -174,4 +174,38 @@ export const mathChallenges: Challenge[] = [
       { input: ["0", "0"], expected: 0 },
     ],
   },
+  {
+    id: "is-prime",
+    title: "Check if Number Is Prime",
+    category: "math",
+    description:
+      "Return 1 if n is a prime number, otherwise return 0. A prime number is greater than 1 and divisible only by 1 and itself.",
+    paramNames: ["n"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "is_prime",
+        starterCode: `def is_prime(n: int) -> int:
+    # TODO: implement
+    return 0
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "isPrime",
+        starterCode: `function isPrime(n) {
+  // TODO: implement
+  return 0;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [-7], expected: 0 },
+      { input: [1], expected: 0 },
+      { input: [2], expected: 1 },
+      { input: [9], expected: 0 },
+      { input: [97], expected: 1 },
+    ],
+  },
 ];
