@@ -303,7 +303,7 @@ export const stringsChallenges: Challenge[] = [
       {
         id: "python",
         requiredFunction: "find_occurrences_of_x",
-        starterCode: `def find_occurrences_of_x(string: string, x: str) -> int:
+        starterCode: `def find_occurrences_of_x(string: str, x: str) -> int:
     # TODO: count occurrences of x in s
     return 0
 `,
