@@ -18,6 +18,7 @@ export interface Challenge {
   category: CategoryId;
   description: string;
   paramNames: string[];
+  helpLink?: { text: string; href: string };
   languages: LanguageConfig[]; // NEW: per-language configs
   tests: TestCase[];
   codeSnippet?: {
