@@ -303,7 +303,7 @@ export const stringsChallenges: Challenge[] = [
       {
         id: "python",
         requiredFunction: "find_occurrences_of_x",
-        starterCode: `def find_occurrences_of_x(string: string, x: str) -> int:
+        starterCode: `def find_occurrences_of_x(string: str, x: str) -> int:
     # TODO: count occurrences of x in s
     return 0
 `,
@@ -387,11 +387,45 @@ export const stringsChallenges: Challenge[] = [
       },
     ],
     tests: [
-      { input: [["aaa"], ["a"], ["b"]], expected: "bbb" },
-      { input: [["c b a"], [" "], ["_"]], expected: "c_b_a" },
-      { input: [["aaAa"], ["A"], ["a"]], expected: "aaaa" },
-      { input: [["a1!z"], ["1"], [""]], expected: "a!z" },
-      { input: [[" \n"], [" "], ["\t"]], expected: "\t\n" },
+      { input: ["aaa", "a", "b"], expected: "bbb" },
+      { input: ["c b a", " ", "_"], expected: "c_b_a" },
+      { input: ["aaAa", "A", "a"], expected: "aaaa" },
+      { input: ["a1!z", "1", ""], expected: "a!z" },
+      { input: [" \n", " ", "\t"], expected: "\t\n" },
+    ],
+  },
+  {
+    id: "return-ascii-string-value",
+    title: "Return ASCII String Value",
+    category: "strings",
+    description:
+      "Return the ASCII string representation of the input string. For example, 'a' becomes '97'.",
+    paramNames: ["string"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "return_ascii_string_value",
+        starterCode: `def return_ascii_string_value(s: str) -> str:
+    # TODO: return ASCII string representation of the input string
+    return ""
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "returnAsciiStringValue",
+        starterCode: `function returnAsciiStringValue(s) {
+  // TODO: return ASCII string representation of the input string
+  return "";
+}
+`,
+      },
+    ],
+    tests: [
+      { input: ["aaa"], expected: "979797" },
+      { input: ["c b a"], expected: "9932983297" },
+      { input: ["aaAa"], expected: "97976597" },
+      { input: [""], expected: "" },
+      { input: [" \n"], expected: "3210" },
     ],
   },
 ];

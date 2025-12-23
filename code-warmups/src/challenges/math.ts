@@ -110,7 +110,8 @@ export const mathChallenges: Challenge[] = [
     id: "return-list-of-divisors",
     title: "Return List of Divisors",
     category: "math",
-    description: "Return a list of all divisors of n (excluding n itself) and in ascending order (small to large).",
+    description:
+      "Return a list of all divisors of n (excluding n itself) and in ascending order (small to large).",
     paramNames: ["n"],
     languages: [
       {
@@ -139,11 +140,12 @@ export const mathChallenges: Challenge[] = [
       { input: [28], expected: [1, 2, 4, 7, 14] },
     ],
   },
-    {
+  {
     id: "return-string-sum",
     title: "Return String Sum",
     category: "math",
-    description: "Return the sum of two numbers represented as strings. The result should also be returned as an integer.",
+    description:
+      "Return the sum of two numbers represented as strings. The result should also be returned as an integer.",
     paramNames: ["str1", "str2"],
     languages: [
       {

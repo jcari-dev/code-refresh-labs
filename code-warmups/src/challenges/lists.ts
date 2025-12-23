@@ -30,8 +30,8 @@ export const listsChallenges: Challenge[] = [
     tests: [
       { input: [[3, 2, 1]], expected: [1, 2, 3] },
       { input: [[3, 2, 2]], expected: [2, 2, 3] },
-      { input: [[-1, -3, 2]], expected: [-3, -1, 2] },
-      { input: [[1, 2, 3]], expected: [1, 2, 3] },
+      { input: [[-1, -3, 2]], expected: [2, -3, -1] },
+      { input: [[1, 2, 3]], expected: [3, 2, 1] },
       { input: [[]], expected: [] },
     ],
   },
@@ -75,7 +75,7 @@ export const listsChallenges: Challenge[] = [
     category: "lists",
     paramNames: ["nums", "target"],
     description:
-      "Return the indices of the first pair of numbers that add up to target. If none, return [-1, -1].",
+      "Return the indices of the first pair (left to right) of numbers that add up to target. If none, return [-1, -1].",
     languages: [
       {
         id: "python",
@@ -109,12 +109,12 @@ export const listsChallenges: Challenge[] = [
     category: "lists",
     paramNames: ["nums"],
     description:
-      "Return the last element of a list. If the list is empty, return [].",
+      "Return the last element of a list in an array / list. If the list is empty, return [].",
     languages: [
       {
         id: "python",
         requiredFunction: "return_last_element",
-        starterCode: `def return_last_element(nums: list[int]) -> int | []:
+        starterCode: `def return_last_element(nums: list[int]) -> list[int]:
     # TODO: implement
     return []
 `,
@@ -130,10 +130,10 @@ export const listsChallenges: Challenge[] = [
       },
     ],
     tests: [
-      { input: [[2, 7, 11, 15]], expected: 15 },
-      { input: [[3, 2, 4]], expected: 4 },
-      { input: [[3, 0]], expected: 0 },
-      { input: [[1]], expected: 1 },
+      { input: [[2, 7, 11, 15]], expected: [15] },
+      { input: [[3, 2, 4]], expected: [4] },
+      { input: [[3, 0]], expected: [0] },
+      { input: [[1]], expected: [1] },
       { input: [[]], expected: [] },
     ],
   },
@@ -211,16 +211,16 @@ export const listsChallenges: Challenge[] = [
     ],
     tests: [
       {
-        input: [[2, 7, 11, 15], [1]],
-        expected: [2, 7, 15],
+        input: [[2, 7, 11, 15], 1],
+        expected: [2, 11, 15],
       },
       {
-        input: [[3, 2, 4], [4]],
+        input: [[3, 2, 4], 4],
         expected: [3, 2, 4],
       },
-      { input: [[3, 0], []], expected: [3, 0] },
-      { input: [[1], [0]], expected: [] },
-      { input: [[1, 2, 3], [-1]], expected: [1, 2] },
+      { input: [[3, 0], 1], expected: [3] },
+      { input: [[1], 0], expected: [] },
+      { input: [[1, 2, 3], -1], expected: [1, 2] },
     ],
   },
   {
@@ -244,7 +244,7 @@ export const listsChallenges: Challenge[] = [
         requiredFunction: "splitListInHalf",
         starterCode: `function splitListInHalf(nums) {
   // TODO: implement
-  return [];
+  return [[], []];
 }
 `,
       },
@@ -290,7 +290,7 @@ export const listsChallenges: Challenge[] = [
         requiredFunction: "splitListInHalfInterpolated",
         starterCode: `function splitListInHalfInterpolated(nums) {
   // TODO: implement
-  return [];
+  return [[], []];
 }
 `,
       },
