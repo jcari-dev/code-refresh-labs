@@ -321,4 +321,56 @@ export const listsChallenges: Challenge[] = [
       },
     ],
   },
+  {
+    id: "sum-two-lists",
+    title: "Sum Two Lists",
+    category: "lists",
+    paramNames: ["a", "b"],
+    description:
+      "Return a single list where each element is the sum of the elements at the same index in both lists.",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "sum_two_lists",
+        starterCode: `def sum_two_lists(a: list[int], b: list[int]) -> list[int]:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "sumTwoLists",
+        starterCode: `function sumTwoLists(a, b) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      {
+        input: [
+          [1, 2],
+          [3, 4],
+        ],
+        expected: [4, 6],
+      },
+      {
+        input: [
+          [0, 0],
+          [0, 0],
+        ],
+        expected: [0, 0],
+      },
+      {
+        input: [
+          [-1, 2],
+          [1, -2],
+        ],
+        expected: [0, 0],
+      },
+      { input: [[5], [7]], expected: [12] },
+      { input: [[], []], expected: [] },
+    ],
+  },
 ];
