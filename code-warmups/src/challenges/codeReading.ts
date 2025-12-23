@@ -67,4 +67,39 @@ return items;`,
     ],
     tests: [{ input: [], expected: [1, 0] }],
   },
+  {
+    id: "cr-regex-remove-digits",
+    title: "Code Reading Warmup: 3",
+    category: "code-reading",
+    description: "What is the final value of `text`?",
+    paramNames: [""],
+    codeSnippet: {
+      python: `text = "a1b2c3"
+text = re.sub(r"\\d", "", text)
+return text`,
+      javascript: `let text = "a1b2c3";
+text = text.replace(/\\d/g, "");
+return text;`,
+    },
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "solution",
+        starterCode: `def solution():
+    # TODO: return the final value of text
+    return None
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "solution",
+        starterCode: `function solution() {
+  // TODO: return the final value of text
+  return null;
+}
+`,
+      },
+    ],
+    tests: [{ input: [], expected: "abc" }],
+  },
 ];
