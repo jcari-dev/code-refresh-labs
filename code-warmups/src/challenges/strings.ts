@@ -428,4 +428,45 @@ export const stringsChallenges: Challenge[] = [
       { input: [" \n"], expected: "3210" },
     ],
   },
+  {
+    id: "replace-diacritics",
+    title: "Remove Diacritics from String",
+    category: "strings",
+
+  description:
+    "Remove all diacritic marks from the input string and return the cleaned string.",
+  helpLink: { text: "diacritic", href: "https://en.wikipedia.org/wiki/Diacritic" },
+
+
+    paramNames: ["string"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "remove_diacritics",
+        starterCode: `def remove_diacritics(s: str) -> str:
+    # TODO: remove diacritic marks from the string
+    return ""
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "removeDiacritics",
+        starterCode: `function removeDiacritics(s) {
+  // TODO: remove diacritic marks from the string
+  return "";
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [""], expected: "" },
+      { input: ["basic text"], expected: "basic text" },
+      { input: ["happý smilé fríend"], expected: "happy smile friend" },
+      { input: ["lôve jóy fäir pläy"], expected: "love joy fair play" },
+      {
+        input: ["áàâäãå ēéèêë īíìîï ōóòôö ūúùûü çñÿ"],
+        expected: "aaaaaa eeeee iiiii ooooo uuuuu cny",
+      },
+    ],
+  },
 ];

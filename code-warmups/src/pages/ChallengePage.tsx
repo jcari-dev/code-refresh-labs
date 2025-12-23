@@ -22,6 +22,37 @@ function formatInput(input: any, paramNames: string[]) {
     .join(", ");
 }
 
+function renderDescription(
+  description: string,
+  helpLink?: { text: string; href: string }
+) {
+  if (!helpLink) return description;
+
+  const parts = description.split(helpLink.text);
+
+  if (parts.length === 1) return description; // word not found?
+
+  return (
+    <>
+      {parts.map((part, i) => (
+        <span key={i}>
+          {part}
+          {i < parts.length - 1 && (
+            <a
+              href={helpLink.href}
+              target="_blank"
+              rel="noreferrer"
+              className="text-emerald-300 hover:underline"
+            >
+              {helpLink.text}
+            </a>
+          )}
+        </span>
+      ))}
+    </>
+  );
+}
+
 export default function ChallengePage() {
   const { challengeId } = useParams();
   const challenge = challenges.find((c) => c.id === challengeId);
@@ -100,7 +131,7 @@ export default function ChallengePage() {
           <h1 className="text-xl font-bold text-slate-50">{challenge.title}</h1>
 
           <p className="text-sm text-slate-300 whitespace-pre-wrap">
-            {challenge.description}
+            {renderDescription(challenge.description, challenge.helpLink)}
           </p>
 
           {/* Code snippet (code-reading only). Shows both languages to avoid needing shared state. */}
