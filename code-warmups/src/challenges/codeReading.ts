@@ -2,6 +2,48 @@ import type { Challenge } from "../types";
 
 export const codeReadingChallenges: Challenge[] = [
   {
+    id: "cr-practice-walkthrough",
+    title: "Code Reading Practice: Walkthrough",
+    category: "code-reading",
+    description:
+      "This practice problem shows how code reading challenges work. Just press the 'Run Code'!",
+    paramNames: [""],
+    codeSnippet: {
+      python: `text = "a1b2c3"
+text = text.replace("a", "")
+text = text.replace("b", "")
+text = text.replace("c", "")
+# At this point, text is "123"
+return text`,
+      javascript: `let text = "a1b2c3";
+text = text.replace("a", "");
+text = text.replace("b", "");
+text = text.replace("c", "");
+// At this point, text is "123"
+return text;`,
+    },
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "solution",
+        starterCode: `def solution():
+    # The answer is "123"
+    return "123" # <-- We already are returning the right answer
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "solution",
+        starterCode: `function solution() {
+  // The answer is "123"
+  return "123"; // <-- We already are returning the right answer
+}
+`,
+      },
+    ],
+    tests: [{ input: [], expected: "123" }],
+  },
+  {
     id: "cr-list-mutation",
     title: "Code Reading Warmup: 1",
     category: "code-reading",
