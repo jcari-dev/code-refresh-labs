@@ -70,6 +70,40 @@ export const listsChallenges: Challenge[] = [
     ],
   },
   {
+    id: "find-minimum-and-maximum-value-in-list",
+    title: "Find Minimum and Maximum Value in List",
+    category: "lists",
+    paramNames: ["nums"],
+    description:
+      "Return the minimum and maximum values in the list in an array / list. If the list is empty, return [].",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "find_min_max_value_in_list",
+        starterCode: `def find_min_max_value_in_list(nums: list[int]) -> list[int]:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "findMinMaxValueInList",
+        starterCode: `function findMinMaxValueInList(nums) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [[2, 7, 11, 15]], expected: [2, 15] },
+      { input: [[3, 2, 4]], expected: [2, 4] },
+      { input: [[3, 3]], expected: [3, 3] },
+      { input: [[1, 2, 3]], expected: [1, 3] },
+      { input: [[]], expected: [] },
+    ],
+  },
+  {
     id: "two-sum-indices",
     title: "Two Sum Indices",
     category: "lists",
