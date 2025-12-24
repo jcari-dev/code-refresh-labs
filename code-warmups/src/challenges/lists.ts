@@ -206,25 +206,25 @@ export const listsChallenges: Challenge[] = [
     ],
   },
   {
-    id: "concat-two-lists",
-    title: "Concatenate Two Lists",
+    id: "merge-two-lists",
+    title: "Merge Two Lists",
     category: "lists",
     paramNames: ["nums1", "nums2"],
     description:
-      "Return a new list that is the concatenation of the two input lists.",
+      "Return a new list that is the merging of the two input lists.",
     languages: [
       {
         id: "python",
-        requiredFunction: "concat_two_lists",
-        starterCode: `def concat_two_lists(nums1: list[int], nums2: list[int]) -> list[int]:
+        requiredFunction: "merge_two_lists",
+        starterCode: `def merge_two_lists(nums1: list[int], nums2: list[int]) -> list[int]:
     # TODO: implement
     return []
 `,
       },
       {
         id: "javascript",
-        requiredFunction: "concatTwoLists",
-        starterCode: `function concatTwoLists(nums1, nums2) {
+        requiredFunction: "mergeTwoLists",
+        starterCode: `function mergeTwoLists(nums1, nums2) {
   // TODO: implement
   return [];
 }
@@ -251,6 +251,62 @@ export const listsChallenges: Challenge[] = [
       { input: [[], []], expected: [] },
     ],
   },
+  {
+    id: "merge-two-lists-ii",
+    title: "Merge Two Lists II (Sorted)",
+    category: "lists",
+    paramNames: ["nums1", "nums2"],
+    description:
+      "Return a new sorted list formed by merging two sorted input lists.",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "merge_two_lists",
+        starterCode: `def merge_two_lists(nums1: list[int], nums2: list[int]) -> list[int]:
+    # TODO: merge and return a sorted list
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "mergeTwoLists",
+        starterCode: `function mergeTwoLists(nums1, nums2) {
+  // TODO: merge and return a sorted list
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      {
+        input: [
+          [2, 7, 11, 15],
+          [1, 2, 3],
+        ],
+        expected: [1, 2, 2, 3, 7, 11, 15],
+      },
+      {
+        input: [
+          [2, 3, 4],
+          [5, 6],
+        ],
+        expected: [2, 3, 4, 5, 6],
+      },
+      {
+        input: [[0, 3], []],
+        expected: [0, 3],
+      },
+      {
+        input: [[1], [2]],
+        expected: [1, 2],
+      },
+      {
+        input: [[], []],
+        expected: [],
+      },
+    ],
+  },
+
   {
     id: "remove-index-value-from-list",
     title: "Remove Index Value From List",
