@@ -531,4 +531,39 @@ export const listsChallenges: Challenge[] = [
       { input: [[1, 3, 2, 4]], expected: 0 },
     ],
   },
+  {
+    id: "check-if-list-is-sorted-II",
+    title: "Check If List Is Sorted II",
+    category: "lists",
+    paramNames: ["nums"],
+    description:
+      "Return 1 if the list is sorted in ascending order, -1 if it is sorted in descending order, and 0 if it is not sorted. An empty list is considered sorted.",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "check_if_list_is_sorted",
+        starterCode: `def check_if_list_is_sorted(nums: list[int]) -> int:
+    # TODO: implement
+    return 0
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "checkIfListIsSorted",
+        starterCode: `function checkIfListIsSorted(nums) {
+  // TODO: implement
+  return 0;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [[]], expected: 1 },
+      { input: [[5]], expected: 1 },
+      { input: [[1, 1, 1, 1]], expected: 1 },
+      { input: [[-5, -2, 0, 0, 3]], expected: 1 },
+      { input: [[9, 7, 7, 2, -1]], expected: -1 },
+      { input: [[3, 2, 4, 1]], expected: 0 },
+    ],
+  },
 ];
