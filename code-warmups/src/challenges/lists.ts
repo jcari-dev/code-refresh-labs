@@ -172,6 +172,40 @@ export const listsChallenges: Challenge[] = [
     ],
   },
   {
+    id: "return-most-frequent-element",
+    title: "Return Most Frequent Element",
+    category: "lists",
+    paramNames: ["nums"],
+    description:
+      "Return the most frequent element. If the list is empty return [].",
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "return_most_frequent_element",
+        starterCode: `def return_most_frequent_element(nums: list[int]) -> int:
+    # TODO: implement
+    return [] 
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "returnMostFrequentElement",
+        starterCode: `function returnMostFrequentElement(nums) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [[1, 1, 2, 2, 2, 3]], expected: 2 },
+      { input: [[1, 1, 1]], expected: 1 },
+      { input: [[3, 0]], expected: 3 },
+      { input: [[1]], expected: 1 },
+      { input: [[]], expected: [] },
+    ],
+  },
+  {
     id: "concat-two-lists",
     title: "Concatenate Two Lists",
     category: "lists",
