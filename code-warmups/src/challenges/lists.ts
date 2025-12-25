@@ -206,40 +206,53 @@ export const listsChallenges: Challenge[] = [
     ],
   },
   {
-  id: "count-occurrences",
-  title: "Count Occurrences",
-  category: "lists",
-  description:
-    "Given a sorted list of integers, return a list of pairs [value, count] representing how many times each value appears. The input list is already sorted.",
-  paramNames: ["nums"],
-  languages: [
-    {
-      id: "python",
-      requiredFunction: "count_occurrences",
-      starterCode: `def count_occurrences(nums: list[int]) -> list[list[int]]:
+    id: "count-occurrences",
+    title: "Count Occurrences",
+    category: "lists",
+    description:
+      "Given a sorted list of integers, return a list of pairs [value, count] representing how many times each value appears. The input list is already sorted.",
+    paramNames: ["nums"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "count_occurrences",
+        starterCode: `def count_occurrences(nums: list[int]) -> list[list[int]]:
     # TODO: implement
     return []
 `,
-    },
-    {
-      id: "javascript",
-      requiredFunction: "countOccurrences",
-      starterCode: `function countOccurrences(nums) {
+      },
+      {
+        id: "javascript",
+        requiredFunction: "countOccurrences",
+        starterCode: `function countOccurrences(nums) {
   // TODO: implement
   return [];
 }
 `,
-    },
-  ],
-  tests: [
-    { input: [[]], expected: [] },
-    { input: [[1]], expected: [[1, 1]] },
-    { input: [[1, 1, 1]], expected: [[1, 3]] },
-    { input: [[1, 2, 2, 3]], expected: [[1, 1], [2, 2], [3, 1]] },
-    { input: [[0, 0, 1, 1, 1, 2]], expected: [[0, 2], [1, 3], [2, 1]] },
-  ],
-}
-,
+      },
+    ],
+    tests: [
+      { input: [[]], expected: [] },
+      { input: [[1]], expected: [[1, 1]] },
+      { input: [[1, 1, 1]], expected: [[1, 3]] },
+      {
+        input: [[1, 2, 2, 3]],
+        expected: [
+          [1, 1],
+          [2, 2],
+          [3, 1],
+        ],
+      },
+      {
+        input: [[0, 0, 1, 1, 1, 2]],
+        expected: [
+          [0, 2],
+          [1, 3],
+          [2, 1],
+        ],
+      },
+    ],
+  },
   {
     id: "merge-two-lists",
     title: "Merge Two Lists",
@@ -341,7 +354,52 @@ export const listsChallenges: Challenge[] = [
       },
     ],
   },
-
+  {
+    id: "zip-two-lists",
+    title: "Zip Two Lists",
+    category: "lists",
+    description:
+      "Given two lists, return a new list by alternating elements from each list. Stop when the shorter list runs out.",
+    paramNames: ["a", "b"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "zip_two_lists",
+        starterCode: `def zip_two_lists(a: list, b: list) -> list:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "zipTwoLists",
+        starterCode: `function zipTwoLists(a, b) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      {
+        input: [
+          [1, 2, 3],
+          ["a", "b"],
+        ],
+        expected: [1, "a", 2, "b"],
+      },
+      { input: [[1], ["x", "y", "z"]], expected: [1, "x"] },
+      { input: [[], [1, 2]], expected: [] },
+      { input: [[true, false], [0]], expected: [true, 0] },
+      {
+        input: [
+          ["a", "b", "c"],
+          ["d", "e"],
+        ],
+        expected: ["a", "d", "b", "e"],
+      },
+    ],
+  },
   {
     id: "remove-index-value-from-list",
     title: "Remove Index Value From List",
