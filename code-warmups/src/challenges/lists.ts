@@ -206,40 +206,53 @@ export const listsChallenges: Challenge[] = [
     ],
   },
   {
-  id: "count-occurrences",
-  title: "Count Occurrences",
-  category: "lists",
-  description:
-    "Given a sorted list of integers, return a list of pairs [value, count] representing how many times each value appears. The input list is already sorted.",
-  paramNames: ["nums"],
-  languages: [
-    {
-      id: "python",
-      requiredFunction: "count_occurrences",
-      starterCode: `def count_occurrences(nums: list[int]) -> list[list[int]]:
+    id: "count-occurrences",
+    title: "Count Occurrences",
+    category: "lists",
+    description:
+      "Given a sorted list of integers, return a list of pairs [value, count] representing how many times each value appears. The input list is already sorted.",
+    paramNames: ["nums"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "count_occurrences",
+        starterCode: `def count_occurrences(nums: list[int]) -> list[list[int]]:
     # TODO: implement
     return []
 `,
-    },
-    {
-      id: "javascript",
-      requiredFunction: "countOccurrences",
-      starterCode: `function countOccurrences(nums) {
+      },
+      {
+        id: "javascript",
+        requiredFunction: "countOccurrences",
+        starterCode: `function countOccurrences(nums) {
   // TODO: implement
   return [];
 }
 `,
-    },
-  ],
-  tests: [
-    { input: [[]], expected: [] },
-    { input: [[1]], expected: [[1, 1]] },
-    { input: [[1, 1, 1]], expected: [[1, 3]] },
-    { input: [[1, 2, 2, 3]], expected: [[1, 1], [2, 2], [3, 1]] },
-    { input: [[0, 0, 1, 1, 1, 2]], expected: [[0, 2], [1, 3], [2, 1]] },
-  ],
-}
-,
+      },
+    ],
+    tests: [
+      { input: [[]], expected: [] },
+      { input: [[1]], expected: [[1, 1]] },
+      { input: [[1, 1, 1]], expected: [[1, 3]] },
+      {
+        input: [[1, 2, 2, 3]],
+        expected: [
+          [1, 1],
+          [2, 2],
+          [3, 1],
+        ],
+      },
+      {
+        input: [[0, 0, 1, 1, 1, 2]],
+        expected: [
+          [0, 2],
+          [1, 3],
+          [2, 1],
+        ],
+      },
+    ],
+  },
   {
     id: "merge-two-lists",
     title: "Merge Two Lists",
