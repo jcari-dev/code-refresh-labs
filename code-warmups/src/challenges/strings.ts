@@ -38,6 +38,41 @@ export const stringsChallenges: Challenge[] = [
     ],
   },
   {
+    id: "is-palindrome",
+    title: "Check if Palindrome",
+    category: "strings",
+    description:
+      "Return 1 if the string is a palindrome, otherwise return 0. A palindrome reads the same forward and backward.",
+    paramNames: ["s"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "is_palindrome",
+        starterCode: `def is_palindrome(s: str) -> int:
+    # TODO: implement
+    return 0
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "isPalindrome",
+        starterCode: `function isPalindrome(s) {
+  // TODO: implement
+  return 0;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [""], expected: 1 },
+      { input: ["a"], expected: 1 },
+      { input: ["racecar"], expected: 1 },
+      { input: ["abba"], expected: 1 },
+      { input: ["hello"], expected: 0 },
+    ],
+  },
+
+  {
     id: "remove-all-digits",
     title: "Remove All Digits",
     category: "strings",
