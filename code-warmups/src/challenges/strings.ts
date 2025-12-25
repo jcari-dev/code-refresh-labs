@@ -105,6 +105,40 @@ export const stringsChallenges: Challenge[] = [
     ],
   },
   {
+    id: "altering-case",
+    title: "String Altering Case",
+    category: "strings",
+    description:
+      "Return the string with alternating character case, starting with uppercase for the first character. Example: 'hello' → 'HeLlO'.",
+    paramNames: ["s"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "altering_case",
+        starterCode: `def altering_case(s: str) -> str:
+    # TODO: implement
+    return ""
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "alteringCase",
+        starterCode: `function alteringCase(s) {
+  // TODO: implement
+  return "";
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [""], expected: "" },
+      { input: ["a"], expected: "A" },
+      { input: ["hello"], expected: "HeLlO" },
+      { input: ["world"], expected: "WoRlD" },
+      { input: ["code"], expected: "CoDe" },
+    ],
+  },
+  {
     id: "count-vowels",
     title: "Count Vowels",
     category: "strings",
