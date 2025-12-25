@@ -348,6 +348,40 @@ export const listsChallenges: Challenge[] = [
     ],
   },
   {
+    id: "remove-duplicates-preserve-order",
+    title: "Remove Duplicates (Preserve Order)",
+    category: "lists",
+    description:
+      "Return a new list with duplicates removed, keeping the first occurrence of each value and preserving the original order.",
+    paramNames: ["nums"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "remove_duplicates_preserve_order",
+        starterCode: `def remove_duplicates_preserve_order(nums: list[int]) -> list[int]:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "removeDuplicatesPreserveOrder",
+        starterCode: `function removeDuplicatesPreserveOrder(nums) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [[]], expected: [] },
+      { input: [[1, 1, 1]], expected: [1] },
+      { input: [[1, 2, 2, 3, 1]], expected: [1, 2, 3] },
+      { input: [[5, 4, 5, 4, 3, 2, 2, 1]], expected: [5, 4, 3, 2, 1] },
+      { input: [[0, -1, 0, -1, 2]], expected: [0, -1, 2] },
+    ],
+  },
+  {
     id: "split-list-in-half-i",
     title: "Split List in Half I",
     category: "lists",
