@@ -104,7 +104,40 @@ export const stringsChallenges: Challenge[] = [
       { input: ["racecar"], expected: "racecar" },
     ],
   },
-
+  {
+    id: "count-vowels",
+    title: "Count Vowels",
+    category: "strings",
+    description:
+      "Return the number of vowels in the string. Count both lowercase and uppercase vowels (a, e, i, o, u).",
+    paramNames: ["s"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "count_vowels",
+        starterCode: `def count_vowels(s: str) -> int:
+    # TODO: implement
+    return 0
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "countVowels",
+        starterCode: `function countVowels(s) {
+  // TODO: implement
+  return 0;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [""], expected: 0 },
+      { input: ["bcdfg"], expected: 0 },
+      { input: ["hello"], expected: 2 },
+      { input: ["AEIOU"], expected: 5 },
+      { input: ["Programming"], expected: 3 },
+    ],
+  },
   {
     id: "remove-all-digits",
     title: "Remove All Digits",
