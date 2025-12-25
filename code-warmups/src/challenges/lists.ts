@@ -354,7 +354,52 @@ export const listsChallenges: Challenge[] = [
       },
     ],
   },
-
+  {
+    id: "zip-two-lists",
+    title: "Zip Two Lists",
+    category: "lists",
+    description:
+      "Given two lists, return a new list by alternating elements from each list. Stop when the shorter list runs out.",
+    paramNames: ["a", "b"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "zip_two_lists",
+        starterCode: `def zip_two_lists(a: list, b: list) -> list:
+    # TODO: implement
+    return []
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "zipTwoLists",
+        starterCode: `function zipTwoLists(a, b) {
+  // TODO: implement
+  return [];
+}
+`,
+      },
+    ],
+    tests: [
+      {
+        input: [
+          [1, 2, 3],
+          ["a", "b"],
+        ],
+        expected: [1, "a", 2, "b"],
+      },
+      { input: [[1], ["x", "y", "z"]], expected: [1, "x"] },
+      { input: [[], [1, 2]], expected: [] },
+      { input: [[true, false], [0]], expected: [true, 0] },
+      {
+        input: [
+          ["a", "b", "c"],
+          ["d", "e"],
+        ],
+        expected: ["a", "d", "b", "e"],
+      },
+    ],
+  },
   {
     id: "remove-index-value-from-list",
     title: "Remove Index Value From List",
