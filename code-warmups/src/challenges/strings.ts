@@ -71,6 +71,39 @@ export const stringsChallenges: Challenge[] = [
       { input: ["hello"], expected: 0 },
     ],
   },
+  {
+    id: "reverse-string",
+    title: "Reverse a String",
+    category: "strings",
+    description: "Return the reversed version of the input string.",
+    paramNames: ["s"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "reverse_string",
+        starterCode: `def reverse_string(s: str) -> str:
+    # TODO: implement
+    return ""
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "reverseString",
+        starterCode: `function reverseString(s) {
+  // TODO: implement
+  return "";
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [""], expected: "" },
+      { input: ["a"], expected: "a" },
+      { input: ["abc"], expected: "cba" },
+      { input: ["hello"], expected: "olleh" },
+      { input: ["racecar"], expected: "racecar" },
+    ],
+  },
 
   {
     id: "remove-all-digits",
