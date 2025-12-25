@@ -277,4 +277,39 @@ export const mathChallenges: Challenge[] = [
       { input: [20, 3], expected: 8000 },
     ],
   },
+  {
+    id: "fibonacci-nth",
+    title: "Nth Fibonacci Number",
+    category: "math",
+    description:
+      "Return the nth Fibonacci number. If n is negative, return 0. The sequence starts with 0, 1.",
+    paramNames: ["n"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "fibonacci",
+        starterCode: `def fibonacci(n: int) -> int:
+    # TODO: implement
+    return 0
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "fibonacci",
+        starterCode: `function fibonacci(n) {
+  // TODO: implement
+  return 0;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [-3], expected: 0 },
+      { input: [0], expected: 0 },
+      { input: [1], expected: 1 },
+      { input: [2], expected: 1 },
+      { input: [7], expected: 13 },
+      { input: [10], expected: 55 },
+    ],
+  },
 ];
