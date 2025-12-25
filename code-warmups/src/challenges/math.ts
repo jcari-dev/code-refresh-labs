@@ -73,6 +73,41 @@ export const mathChallenges: Challenge[] = [
     ],
   },
   {
+  id: "digits-sum",
+  title: "Sum of Digits",
+  category: "math",
+  description:
+    "Return the sum of the digits of an integer. If the number is negative, include the sign in the result (e.g. -513 → -1).",
+  paramNames: ["n"],
+  languages: [
+    {
+      id: "python",
+      requiredFunction: "digits_sum",
+      starterCode: `def digits_sum(n: int) -> int:
+    # TODO: implement
+    return 0
+`,
+    },
+    {
+      id: "javascript",
+      requiredFunction: "digitsSum",
+      starterCode: `function digitsSum(n) {
+  // TODO: implement
+  return 0;
+}
+`,
+    },
+  ],
+  tests: [
+    { input: [0], expected: 0 },
+    { input: [7], expected: 7 },
+    { input: [123], expected: 6 },
+    { input: [-513], expected: -1 },
+    { input: [10005], expected: 6 },
+  ],
+}
+,
+  {
     id: "return-absolute-value-of-list-sum",
     title: "Return Absolute Value of List Sum",
     category: "math",
