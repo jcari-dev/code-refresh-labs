@@ -208,4 +208,38 @@ export const mathChallenges: Challenge[] = [
       { input: [97], expected: 1 },
     ],
   },
+  {
+    id: "factorial-of-number",
+    title: "Factorial of a Number",
+    category: "math",
+    description:
+      "Return the factorial of n. If n is negative, return 0. Factorial of 0 is 1.",
+    paramNames: ["n"],
+    languages: [
+      {
+        id: "python",
+        requiredFunction: "factorial",
+        starterCode: `def factorial(n: int) -> int:
+    # TODO: implement
+    return 0
+`,
+      },
+      {
+        id: "javascript",
+        requiredFunction: "factorial",
+        starterCode: `function factorial(n) {
+  // TODO: implement
+  return 0;
+}
+`,
+      },
+    ],
+    tests: [
+      { input: [-5], expected: 0 },
+      { input: [0], expected: 1 },
+      { input: [1], expected: 1 },
+      { input: [5], expected: 120 },
+      { input: [7], expected: 5040 },
+    ],
+  },
 ];
