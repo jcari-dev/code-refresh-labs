@@ -1,0 +1,42 @@
+name: "Contribute a Micro Tip"
+description: "Submit a micro tip for Code Refresh Labs."
+title: "[Micro Tip] "
+labels: ["micro-tip"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Content guidelines**
+
+        Please avoid religious, political, or other potentially controversial topics.
+        Tips that fall into these categories may not be adopted. Thanks for helping keep tips friendly and useful!
+
+  - type: textarea
+    id: tip
+    attributes:
+      label: Micro tip
+      description: Write one short tip. You can use backticks for inline code.
+      placeholder: "Example: `all([])` is True, `any([])` is False."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Fun
+        - General
+        - Python
+        - JavaScript
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author (optional)
+      description: GitHub username, nickname, or leave blank for anonymous.
+      placeholder: "anonymous"
+    validations:
+      required: false
