@@ -11,6 +11,7 @@ import Why from "./pages/Why";
 
 export default function App() {
   const [isMobile, setIsMobile] = useState(false);
+  const [dismissedMobileWarning, setDismissedMobileWarning] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -19,21 +20,17 @@ export default function App() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  if (isMobile) {
-    return <MobileWarning />;
+  if (isMobile && !dismissedMobileWarning) {
+    return <MobileWarning onContinue={() => setDismissedMobileWarning(true)} />;
   }
 
   return (
     <HashRouter>
       <div className="min-h-screen bg-slate-950 text-slate-50">
         <div className="flex h-screen">
-          {/* Left app rail */}
           <Sidebar />
-
-          {/* Main app column */}
           <div className="flex flex-1 flex-col">
             <Navbar />
-
             <main className="flex-1 overflow-y-auto bg-slate-900/60 px-6 py-6">
               <div className="mx-auto w-full max-w-screen-2xl">
                 <Routes>
